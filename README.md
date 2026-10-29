@@ -60,6 +60,9 @@
    - [vscode-pdf](https://github.com/tomoki1207/vscode-pdfviewer) — для просмотра файлов PDF внутри VSC (опционально);
    - [Code Spell Checker](https://github.com/streetsidesoftware/vscode-spell-checker) в связке с [Russian - Code Spell Checker](https://github.com/streetsidesoftware/vscode-cspell-dict-extensions) для проверки орфографии (опционально).
 
+3. Работа с пояснительной запиской осуществляется в каталоге с шаблоном и рабочими файлами.
+Готовый шаблон можно скачать по [ссылке](https://github.com/OldNestling/ONP-Explanatory_Note/releases/download/Typst_template/Typst_template.zip)
+
 Программа для конвертации исходного файла записки в xml-файл по схеме [версии 1.07](xml-schemas/01.07/explanatorynote-01-07.xsd) для автомобильных работ на данный момент находится в начале разработки.
 
 ## Лицензия
