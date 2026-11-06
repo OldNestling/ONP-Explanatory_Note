@@ -176,7 +176,7 @@
 
 	// ---------- Списки  ----------
 	set list(
-		marker: "-",
+		marker: "—",
 		indent: 12.5mm,		// сдвиг всего списка вправо
 		body-indent: 4mm,	// расстояние от маркера до текста
 		spacing: 0.5em,		// интервал между пунктами
@@ -253,6 +253,43 @@
 	// Применяем вертикальные отступы ТОЛЬКО к выключным формулам
 	show math.equation.where(block: true): it => {
 		block(above: 0.5em, below: 0.5em, it)
+	}
+
+	// ================== Библиография (НТД) ==================
+	show figure.where(kind: "bibitem"): it => {
+		context {
+			let num = counter("bibitem").at(it.location()).first()
+			align(left, block(
+			width: 100%,
+			above: 0.5em,          // = set list(spacing: 0.5em)
+			below: 0.5em,
+			inset: (left: 12.5mm), // = set list(indent: 12.5mm)
+			)[
+			#grid(
+				columns: (auto, 1fr),
+				column-gutter: 4mm,  // = set list(body-indent: 4mm)
+				numbering("[1]", num),
+				{
+				set par(first-line-indent: 0mm, justify: false)
+				it.body
+				},
+			)
+			])
+		}
+	}
+
+
+	show ref: it => {
+		show link: set text(fill: black, weight: "regular")
+		let el = it.element
+		if el != none and el.func() == figure and el.kind == "bibitem" {
+			context {
+			let loc = el.location()
+			link(loc, numbering("[1]", counter("bibitem").at(loc).first()))
+			}
+		} else {
+			it
+		}
 	}
 
 

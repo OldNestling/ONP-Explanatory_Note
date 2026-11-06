@@ -293,3 +293,29 @@
   }
   return res
 }
+
+// ----------- Списиок библиографии с возможностью ссылок ------------
+// ссылки в тексте по типу @СП34 при использованной функции #библиография()
+
+#let bib-counter = counter("bibitem")
+
+// --- Создание элемента библиографии ---
+// lbl — это строка-ключ, например "СП33"
+#let bibitem(body, lbl) = {
+	bib-counter.step()
+	// Оборачиваем figure и label в блок разметки [...]
+	[#figure(
+		kind: "bibitem",
+		caption: none,          // ← отменяет дефолтную подпись "Рисунок"
+		supplement: none,
+		outlined: false,
+		body,
+	) #label(lbl)]
+}
+
+
+#let вывести_библиографию(НТД) = {
+  for (key, doc) in НТД.pairs() {
+    bibitem(doc, key)
+  }
+}
